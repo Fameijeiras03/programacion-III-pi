@@ -9,10 +9,16 @@ import Favorites from './screens/Favorites/Favorite';
 import Login from './screens/Login/Login';
 import Result from './screens/Result/Result';
 import Register from './screens/Register/Register';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 
 function App() {
   return (
+    <>
+    <Header/>
+    <Home/>
+    <Footer/>
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Home} />
@@ -27,6 +33,7 @@ function App() {
 
       </Switch>
     </BrowserRouter>
+    </>
   );
 }
 
