@@ -4,30 +4,6 @@ import React from "react";
 function AllSeries () {
     return (
         <div class="container">
-        <h1>UdeSA Movies</h1>
-
-            <nav>
-            <ul class="nav nav-tabs my-4">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="movies.html">Películas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="series.html">Series</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="favorites.html">Favoritas</a>
-                </li>
-                <li class="nav-item ml-auto">
-                    <a class="nav-link" href="register.html">Registro</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
-                </li>
-            </ul>
-        </nav>
 
         <h2 class="alert alert-warning">Todas las series</h2>
         <form class="filter-form px-0 mb-3" action="" method="get">

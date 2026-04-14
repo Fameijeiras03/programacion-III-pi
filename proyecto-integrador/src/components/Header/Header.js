@@ -18,11 +18,11 @@ function Header() {
                     </li>
 
                     <li className="nav-item">
-                        <a className="nav-link" href="/movies">Películas</a>
+                        <a className="nav-link" href="/allmovies">Películas</a>
                     </li>
 
                     <li className="nav-item">
-                        <a className="nav-link" href="/series">Series</a>
+                        <a className="nav-link" href="/allseries">Series</a>
                     </li>
 
 

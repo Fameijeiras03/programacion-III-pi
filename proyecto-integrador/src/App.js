@@ -7,18 +7,18 @@ import MovieDetail from './screens/MovieDetail/MovieDetail';
 import SerieDetail from './screens/SerieDetail/SerieDetail';
 import Favorites from './screens/Favorites/Favorite';
 import Login from './screens/Login/Login';
-import Result from './screens/Result/Result';
+import Result from './screens/RdoBusqueda/RdoBusqueda';
 import Register from './screens/Register/Register';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import Form from './components/Form/Form';
 
 
 function App() {
   return (
     <>
     <Header/>
-    <Home/>
-    <Footer/>
+    <Form/>
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Home} />
@@ -33,6 +33,9 @@ function App() {
 
       </Switch>
     </BrowserRouter>
+    
+    
+    <Footer/>
     </>
   );
 }
