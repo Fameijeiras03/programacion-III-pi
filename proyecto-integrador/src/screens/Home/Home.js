@@ -14,28 +14,11 @@ function Home () {
     return (
 
             <div className="container hryhry">
-
-                
-
                 <SectionMovies/>
-
                 <SectionMP/>
-
                 <SectionSeries/>
                 <SectionSOA/>
-                
-                
-                
-                
-                
-                
             </div>
-
-            // <footer className="alert alert-primary mt-4 text-center">
-            //     <p className="mb-0">Integrante 1 | Integrante 2 | Integrante 3</p>
-            // </footer>
-
-        // </>
     )
 }
     

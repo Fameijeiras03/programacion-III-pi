@@ -30,7 +30,6 @@ function App() {
         <Route path='/login' component={Login} />
         <Route path='/result' component={Result} />
         <Route path='/register' component={Register} />
-
       </Switch>
     </BrowserRouter>
     

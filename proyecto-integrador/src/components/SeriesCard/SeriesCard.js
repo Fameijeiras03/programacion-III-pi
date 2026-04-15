@@ -34,6 +34,8 @@ class SeriesCard extends Component {
                         {detalleSerie}
                         <button className='btn btn-primary' onClick={()=>this.btnVerMas()} href='#'>{btn}</button> 
                         <Link to={`/serie/${serie.id}`} className='btn btn-primary'>Detalle</Link> 
+                        <a href="" class="btn alert-primary">🩶</a>
+
                     </div>
                 </article>
             )

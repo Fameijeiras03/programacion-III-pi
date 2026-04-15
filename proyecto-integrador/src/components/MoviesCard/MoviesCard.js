@@ -34,6 +34,7 @@ class MoviesCard extends Component {
                         {detalleMovie}
                         <button className='btn btn-primary' onClick={()=>this.btnVerMas()} href='#'>{btn}</button> 
                         <Link to={`/movie/${movie.id}`} className='btn btn-primary'>Detalle</Link> 
+                        <a href="" class="btn alert-primary">🩶</a>
                     </div>
                 </article>
             )
