@@ -17,11 +17,10 @@ function App() {
   return (
     <>
     <Header/>
-    <Home/>
-    <Footer/>
-    <BrowserRouter>
+
+
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route path="/" exact={true} component={Home} />
         <Route path="/allmovies" component={AllMovies} />
         <Route path="/allseries" component={AllSeries} />
         <Route path='/moviedetail/:id' component={MovieDetail} />
@@ -32,7 +31,9 @@ function App() {
         <Route path='/register' component={Register} />
 
       </Switch>
-    </BrowserRouter>
+
+      <Footer/>
+
     </>
   );
 }
