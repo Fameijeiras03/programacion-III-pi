@@ -1,4 +1,6 @@
 import React,{Component} from "react";
+import './Form.css';
+import { withRouter } from "react-router-dom";
 
 class  Form extends Component {
     constructor(props) {
@@ -7,6 +9,7 @@ class  Form extends Component {
     }
     evitarSubmit = (event) => {
         event.preventDefault();
+        this.props.history.push('/RdoBusqueda/' + this.state.valor)
 }
 controlarCambios(event){
     this.setState({valor: event.target.value},
@@ -14,14 +17,19 @@ controlarCambios(event){
 }
 render() {
     return(
-        <form onSubmit={(event)=>this.evitarSubmit(event)}>
-            <label>Name:</label>
-            <input type='text' onChange={(event)=>this.controlarCambios(event)} value={this.state.valor}/>
-            <input type='submit' value='Submit'/>
+        <form className="form-container" onSubmit={(event)=>this.evitarSubmit(event)}>
+            <label>Buscar:</label>
+            <input
+                type='text'
+                placeholder='Películas, series...'
+                onChange={(event)=>this.controlarCambios(event)}
+                value={this.state.valor}
+            />
+            <input type='submit' value='Buscar'/>
         </form>
     )
 }
 }
 
 
-export default Form
+export default withRouter(Form)

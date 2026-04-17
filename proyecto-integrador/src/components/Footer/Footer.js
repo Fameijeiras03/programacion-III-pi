@@ -6,7 +6,6 @@ function Footer(){
         <footer className='alert alert-primary mt-4 text-center'>
                 <p className='mb-0'>Thiago Marrucco - Francisco Ameijeiras - Rafael Muller</p>
         </footer>
-
         
     );
 }

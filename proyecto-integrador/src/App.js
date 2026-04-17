@@ -7,18 +7,24 @@ import MovieDetail from './screens/MovieDetail/MovieDetail';
 import SerieDetail from './screens/SerieDetail/SerieDetail';
 import Favorites from './screens/Favorites/Favorite';
 import Login from './screens/Login/Login';
-import Result from './screens/Result/Result';
+import Result from './screens/RdoBusqueda/RdoBusqueda';
 import Register from './screens/Register/Register';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import Form from './components/Form/Form';
 
 
 function App() {
   return (
     <>
     <Header/>
+<<<<<<< HEAD
 
 
+=======
+    <Form/>
+    <BrowserRouter>
+>>>>>>> 5a10edd424b0dd38d9541300bc4c2ed7582a60c2
       <Switch>
         <Route path="/" exact={true} component={Home} />
         <Route path="/allmovies" component={AllMovies} />
@@ -31,9 +37,16 @@ function App() {
         <Route path='/register' component={Register} />
 
       </Switch>
+<<<<<<< HEAD
 
       <Footer/>
 
+=======
+    </BrowserRouter>
+    
+    
+    <Footer/>
+>>>>>>> 5a10edd424b0dd38d9541300bc4c2ed7582a60c2
     </>
   );
 }
