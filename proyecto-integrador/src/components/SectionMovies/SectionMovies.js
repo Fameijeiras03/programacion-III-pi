@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import MoviesCard from "../MoviesCard/MoviesCard";
+import Movies from "../Movies/Movies";
 
 
 class SectionMovies extends Component {
@@ -26,7 +26,7 @@ class SectionMovies extends Component {
                 <h3>Cargando...</h3> :
                 this.state.movies.slice(0,5).map((movie) => 
                 
-                <MoviesCard
+                <Movies
                     key = {movie.id}
                     results = {movie}
                 />
