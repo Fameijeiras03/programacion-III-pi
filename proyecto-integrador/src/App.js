@@ -12,19 +12,15 @@ import Register from './screens/Register/Register';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Form from './components/Form/Form';
+import NotFound from './NotFound/NotFound';
 
 
 function App() {
   return (
     <>
     <Header/>
-<<<<<<< HEAD
 
 
-=======
-    <Form/>
-    <BrowserRouter>
->>>>>>> 5a10edd424b0dd38d9541300bc4c2ed7582a60c2
       <Switch>
         <Route path="/" exact={true} component={Home} />
         <Route path="/allmovies" component={AllMovies} />
@@ -35,18 +31,12 @@ function App() {
         <Route path='/login' component={Login} />
         <Route path='/result' component={Result} />
         <Route path='/register' component={Register} />
+        <Route path= "*" component={NotFound} />
 
       </Switch>
-<<<<<<< HEAD
 
       <Footer/>
 
-=======
-    </BrowserRouter>
-    
-    
-    <Footer/>
->>>>>>> 5a10edd424b0dd38d9541300bc4c2ed7582a60c2
     </>
   );
 }
