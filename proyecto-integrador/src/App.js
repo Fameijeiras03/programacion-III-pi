@@ -11,7 +11,6 @@ import Result from './screens/RdoBusqueda/RdoBusqueda';
 import Register from './screens/Register/Register';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import Form from './components/Form/Form';
 import NotFound from './NotFound/NotFound';
 
 
