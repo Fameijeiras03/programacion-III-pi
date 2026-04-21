@@ -1,13 +1,18 @@
-import React from "react";
+import React, { Component } from 'react';
+import FormRegister from '../../components/FormRegister/FormRegister';
 
+class Register extends Component {
+    constructor(props) {
+        super(props);
+    }
 
-function Register () {
-    return (
-        <div>
-            <p>Aca se registrara el usuario
-            </p>
-        </div>
-    )
+    render() {
+        return (
+            <main>
+                <FormRegister />
+            </main>
+        );
+    }
 }
 
-export default Register
+export default Register;

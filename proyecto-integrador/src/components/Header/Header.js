@@ -1,9 +1,33 @@
-import React from "react";
+import React, {Component} from "react";
+import {Link} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
-function Header() {
 
 
-    const usuarioLogueado= false; 
+class Header extends Component{
+    constructor(props){
+        super(props)
+        this.state={
+            busqueda:"",
+            tipo:""
+        }
+
+    }
+    controlCambios(event){
+            this.setState({busqueda: event.target.value})
+        }
+
+    controlRadio(event){
+        this.setState({tipo: event.target.value})
+    }
+
+    controlEnvio(event){ // CHEQUEAR
+        event.preventDefault()
+        this.props.history.push(`/RdoBusqueda/${this.state.tipo}/${this.state.busqueda}`)
+    }
+    render(){
+
+        const usuarioLogueado =false;
 
     return (
         <header className="container">
@@ -46,10 +70,26 @@ function Header() {
                     )}
 
                 </ul>
+
+                <form onSubmit={(event)=>this.controlEnvio(event)}>
+    <input 
+        type="text"
+        placeholder="Buscar..."
+        onChange={(event)=>this.controlCambios(event)}
+    />
+    <label><input type="radio" name="tipo" value="movie" onChange={(event)=>this.controlRadio(event)} required /> Películas</label>
+    <label><input type="radio" name="tipo" value="tv" onChange={(event)=>this.controlRadio(event)} required /> Series</label>
+    <button type="submit">Buscar</button>
+</form>
+
             </nav>
 
         </header>
     );
-}
 
-export default Header;
+
+}}
+
+
+
+export default withRouter(Header);

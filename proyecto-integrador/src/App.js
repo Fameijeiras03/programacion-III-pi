@@ -14,9 +14,12 @@ import Footer from './components/Footer/Footer';
 import NotFound from './NotFound/NotFound';
 
 
+
 function App() {
   return (
     <>
+
+    <BrowserRouter>
     <Header/>
 
 
@@ -28,14 +31,15 @@ function App() {
         <Route path='/seriesdetail/:id' component={SerieDetail} />
         <Route path='/favorites' component={Favorites} />
         <Route path='/login' component={Login} />
-        <Route path='/result' component={Result} />
+        <Route path="/RdoBusqueda/:tipo/:busqueda" component={Result} />
         <Route path='/register' component={Register} />
         <Route path= "*" component={NotFound} />
+
 
       </Switch>
 
       <Footer/>
-
+    </BrowserRouter>
     </>
   );
 }

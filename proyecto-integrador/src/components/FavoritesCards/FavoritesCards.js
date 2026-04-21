@@ -7,8 +7,15 @@ function FavoritesCards(props){
 
     return(
         <article className="single-card-movie">
-            
+            <h3>{titulo}</h3>
+
+            <Link to= "/movidetail">Ver detalle</Link>
+
+            <button onClick={()=>props.eliminar(item.id)}>Eliminar de favoritos</button>
+
 
         </article>
-    )
+    );
 }
+
+export default FavoritesCards;

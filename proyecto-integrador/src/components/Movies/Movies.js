@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import './MoviesCard.css';
+import Cookies from "universal-cookie";
+import './Movies.css';
 
-class MoviesCard extends Component {
+const cookies = new Cookies();
+
+class Movies extends Component {
         constructor(props){
             super(props)
             this.state = {
@@ -14,6 +17,18 @@ class MoviesCard extends Component {
                 {verMas: !this.state.verMas}
             )
         }
+
+        agregarFavorito(){
+        let movie = this.props.results;
+        let favoritesMovies = [];
+
+        if (localStorage.getItem("favoritesMovies") !== null){
+            favoritesMovies = JSON.parse(localStorage.getItem("favoritesMovies"));
+        }
+
+        favoritesMovies.push(movie);
+        localStorage.setItem("favoritesMovies", JSON.stringify(favoritesMovies));
+    }
         render(){
             let btn = 'Ver Mas'
             let detalleMovie 
@@ -34,22 +49,16 @@ class MoviesCard extends Component {
                         {detalleMovie}
                         <button className='btn btn-primary' onClick={()=>this.btnVerMas()} href='#'>{btn}</button> 
                         <Link to={`/movie/${movie.id}`} className='btn btn-primary'>Detalle</Link> 
-                        <a href="" class="btn alert-primary">🩶</a>
+                        {cookies.get('session') && 
+                        <button className='btn alert-primary' onClick={() => this.agregarFavorito()}>🩶</button>
+}
+                        
                     </div>
+                    
                 </article>
             )
         }
     }
 
 
-export default MoviesCard
-
-/**
-Foto.
-Nombre o título.
-Una descripción. La descripción iniciará oculta.
-Link o botón "ver descripción" que debe mostrar/ ocultar la descripción.
-Link o botón “ir a detalle” para navegar hasta la página de detalle del elemento.
-Link, botón o ícono "agregar / quitar de favoritos", solamente disponible si la cookie de sesión existe.
-
- */
+export default Movies

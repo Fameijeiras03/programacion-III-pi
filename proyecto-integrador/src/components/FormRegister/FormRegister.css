@@ -1,0 +1,65 @@
+/* Contenedor principal para centrar todo en la pantalla */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    min-height: 70vh; /* Para que no quede pegado al header */
+}
+
+/* La "Caja" del formulario */
+.register-form {
+    background-color: #f8f9fa; /* Gris muy clarito como tu nav */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 100%;
+    max-width: 400px; /* Ancho máximo para que no se estire de más */
+    display: flex;
+    flex-direction: column; /* Esto lo hace vertical */
+    gap: 15px; /* Espacio entre los elementos */
+}
+
+.register-form h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo de los inputs */
+.register-form input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+.register-form input:focus {
+    border-color: #007bff; /* Color azul cuando clickeas (estilo UdeSA) */
+}
+
+/* Estilo del botón (copiando el estilo de los botones del Home) */
+.register-form button {
+    background-color: #007bff; /* Azul como el "Ver Más" de tus pelis */
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-form button:hover {
+    background-color: #0056b3; 
+}
+
+.error-msg {
+    color: #dc3545;
+    font-size: 14px;
+    text-align: center;
+    margin: 0;
+}

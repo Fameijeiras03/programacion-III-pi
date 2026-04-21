@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import SeriesCard from "../SeriesCard/SeriesCard";
+import Series from "../Series/Series";
 
 
 class SectionAllSeries extends Component {
@@ -39,7 +39,7 @@ class SectionAllSeries extends Component {
                 <h3>Cargando...</h3> :
                 this.state.AllSeriesList.map((series) => 
                 
-                <SeriesCard
+                <Series
                     key = {series.id}
                     results = {series}
                 />

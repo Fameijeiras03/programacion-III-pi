@@ -55,18 +55,38 @@ class Favorites extends Component{
         });
     }
 
-    render(){ //VER NUEVAMENTE TODO ESTO SI ESTA BIEN
+    render(){ 
         const cookies = new Cookies();
 
-        const userLogged =
-            cookies.get("userEmail") ||
-            cookies.get("usuario") ||
-            cookies.get("email") ||
-            cookies.get("session");
+        const userLogged = cookies.get("userEmail");
 
-        if (!userLogged) { //COMPLETAR RETURN  
+        if(!userLogged){
             return <Login/>;
         }
+
+        return (
+        <div>
+            <h2>Películas Favoritas</h2>
+            <div>
+                {this.state.favoritesMovies.map((movie, idx) => (
+                    <Favoritos
+                        key={idx}
+                        item={movie}
+                        eliminar={(id) => this.eliminarFavoriteMovie(id)}/>
+                        ))}
+            </div>
+
+            <h2>Series Favoritas</h2>
+            <div>
+                {this.state.favoritesSeries.map((serie, idx) => (
+                    <Favoritos
+                        key={idx}
+                        item={serie}
+                        eliminar={(id) => this.eliminarFavoriteSerie(id)}/>
+                ))}
+            </div>
+        </div>
+    );
 
 
 
