@@ -48,7 +48,7 @@ class Series extends Component {
                         <h5 className="card-title">{series.title}</h5>
                         {detalleSeries}
                         <button className='btn btn-primary' onClick={()=>this.btnVerMas()} href='#'>{btn}</button> 
-                        <Link to={`/series/${series.id}`} className='btn btn-primary'>Detalle</Link> 
+                        <Link to={`/SeriesDetail/${series.id}`} className='btn btn-primary'>Detalle</Link> 
                         {cookies.get('session') && 
                         <button className='btn alert-primary' onClick={() => this.agregarFavorito()}>🩶</button>
 }

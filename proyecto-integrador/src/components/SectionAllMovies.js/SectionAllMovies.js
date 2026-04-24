@@ -45,7 +45,7 @@ class SectionAllMovies extends Component {
                 />
                 )
                 }
-                <button className="btn btn-info" onClick={() => this.cargarMasPeliculas()}>Mas Personajes</button>
+                <button className="btn btn-info" onClick={() => this.cargarMasPeliculas()}>Mas Peliculas</button>
             </section>
             </>
         )

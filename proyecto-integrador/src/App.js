@@ -12,6 +12,7 @@ import Register from './screens/Register/Register';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import NotFound from './NotFound/NotFound';
+import Logout from './screens/Logout/Logout';
 
 
 
@@ -33,7 +34,8 @@ function App() {
         <Route path='/login' component={Login} />
         <Route path="/RdoBusqueda/:tipo/:busqueda" component={Result} />
         <Route path='/register' component={Register} />
-        <Route path= "*" component={NotFound} />
+        <Route path='/Logout' component={Logout} />
+        <Route path= "" component={NotFound} />
 
 
       </Switch>

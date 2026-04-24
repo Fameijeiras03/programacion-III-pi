@@ -1,0 +1,83 @@
+.favorites-page {
+    padding-bottom: 50px;
+    background-color: #f9f9f9;
+}
+
+.favorites-header {
+    background-color: #d1e7ff;
+    color: #084298;
+    padding: 15px 25px;
+    margin: 30px 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    border-left: 10px solid #084298; /* Un detalle recto */
+}
+
+/* La Card de Favoritos hecha de cero */
+.fav-card-propia {
+    background-color: white;
+    border: 1px solid #ddd;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.fav-card-propia img {
+    width: 100%;
+    display: block;
+}
+
+.fav-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.fav-content h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+    height: 2.4em; /* Para que todos los títulos ocupen el mismo espacio */
+    overflow: hidden;
+}
+
+.fav-content p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Contenedor de botones para que queden abajo */
+.fav-botones {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Botones rectos */
+.btn-detalle-recto, .btn-eliminar-recto {
+    text-align: center;
+    padding: 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 0;
+}
+
+.btn-detalle-recto {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-eliminar-recto {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-detalle-recto:hover { background-color: #0056b3; color: white; }
+.btn-eliminar-recto:hover { background-color: #a71d2a; }

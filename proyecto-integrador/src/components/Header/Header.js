@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import { withRouter } from "react-router-dom";
-
+import Cookies from "universal-cookie";
 
 
 class Header extends Component{
@@ -27,64 +27,71 @@ class Header extends Component{
     }
     render(){
 
-        const usuarioLogueado =false;
+        const cookies = new Cookies();
+        const userLogged = cookies.get("auth-user");
 
     return (
-        <header className="container">
+            <header className="container">
 
-            <h1>UdeSA Movies</h1>
+                <h1>UdeSA Movies</h1>
 
-            <nav>
-                <ul className="nav nav-tabs my-4">
+                <nav>
+                    <ul className="nav nav-tabs my-4">
 
-                    <li className="nav-item">
-                        <a className="nav-link" href="/">Home</a>
-                    </li>
-
-                    <li className="nav-item">
-                        <a className="nav-link" href="/allmovies">Películas</a>
-                    </li>
-
-                    <li className="nav-item">
-                        <a className="nav-link" href="/allseries">Series</a>
-                    </li>
-
-
-                    {usuarioLogueado && (
                         <li className="nav-item">
-                            <a className="nav-link" href="/favorites">Favoritos</a>
+                            <a className="nav-link" href="/">Home</a>
                         </li>
-                    )}
 
-                    
-                    {!usuarioLogueado && (
+                        <li className="nav-item">
+                            <a className="nav-link" href="/allmovies">Películas</a>
+                        </li>
+
+                        <li className="nav-item">
+                            <a className="nav-link" href="/allseries">Series</a>
+                        </li>
+
+
+                        {userLogged && (
                         <>
                             <li className="nav-item">
-                                <a className="nav-link" href="/register">Crear Cuenta</a>
+                                <a className="nav-link" href="/favorites">Favoritos</a>
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link" href="/login">Login</a>
+                                <a className="nav-link" href="/Logout">Logout</a>
                             </li>
                         </>
-                    )}
+                        )}
 
-                </ul>
+                        {!userLogged && (
+                            <>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/register">Crear Cuenta</a>
+                                </li>
 
-                <form onSubmit={(event)=>this.controlEnvio(event)}>
-    <input 
-        type="text"
-        placeholder="Buscar..."
-        onChange={(event)=>this.controlCambios(event)}
-    />
-    <label><input type="radio" name="tipo" value="movie" onChange={(event)=>this.controlRadio(event)} required /> Películas</label>
-    <label><input type="radio" name="tipo" value="tv" onChange={(event)=>this.controlRadio(event)} required /> Series</label>
-    <button type="submit">Buscar</button>
-</form>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/login">Login</a>
+                                </li>
+                            </>
+                        )}
 
-            </nav>
+                    </ul>
 
-        </header>
+                    <form onSubmit={(event) => this.controlEnvio(event)}>
+                        <input
+                            type="text"
+                            placeholder="Buscar..."
+                            onChange={(event) => this.controlCambios(event)}
+                        />
+                        <label><input type="radio" name="tipo" value="movie" onChange={(event) => this.controlRadio(event)} required /> Películas</label>
+                        <label><input type="radio" name="tipo" value="tv" onChange={(event) => this.controlRadio(event)} required /> Series</label>
+                        <button type="submit">Buscar</button>
+                    </form>
+
+                </nav>
+
+            </header> 
+        
     );
 
 

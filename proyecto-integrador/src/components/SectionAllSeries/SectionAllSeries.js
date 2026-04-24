@@ -45,7 +45,7 @@ class SectionAllSeries extends Component {
                 />
                 )
                 }
-                <button className="btn btn-info" onClick={() => this.cargarMasSeries()}>Mas Personajes</button>
+                <button className="btn btn-info" onClick={() => this.cargarMasSeries()}>Mas Series</button>
             </section>
             </>
         )

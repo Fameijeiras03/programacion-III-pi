@@ -1,0 +1,81 @@
+.movie-detail {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    /* Bordes rectos */
+    border-radius: 0; 
+}
+
+.movie-detail img {
+    width: 350px;
+    /* Bordes rectos para la imagen */
+    border-radius: 0; 
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
+
+.movie-detail h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+    width: 100%;
+    /* Para que el título sea imponente como en la captura */
+    font-weight: bold;
+}
+
+.movie-detail p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.movie-detail button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    /* Botón cuadrado */
+    border-radius: 0; 
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.movie-detail button:hover {
+    background-color: #0056b3;
+}
+
+@media (min-width: 769px) {
+    .movie-detail img {
+        flex: 0 0 350px;
+    }
+}
+
+/* Este es el contenedor que envuelve todo el texto */
+.info-detalle {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Esto hace que el texto ocupe el espacio restante */
+    min-width: 300px;
+    align-items: flex-start; /* Alinea todo a la izquierda */
+}
+
+/* Ajuste para que la sección principal sea flexible */
+.movie-detail {
+    display: flex;
+    flex-direction: row; /* Imagen a la izquierda, texto a la derecha */
+    flex-wrap: wrap; /* Si no hay espacio, el texto baja (en celulares) */
+    gap: 40px;
+    padding: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}

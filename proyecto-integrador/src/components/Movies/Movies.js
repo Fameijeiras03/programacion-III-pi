@@ -48,7 +48,7 @@ class Movies extends Component {
                         <h5 className="card-title">{movie.title}</h5>
                         {detalleMovie}
                         <button className='btn btn-primary' onClick={()=>this.btnVerMas()} href='#'>{btn}</button> 
-                        <Link to={`/movie/${movie.id}`} className='btn btn-primary'>Detalle</Link> 
+                        <Link to={`/MovieDetail/${movie.id}`} className='btn btn-primary'>Detalle</Link> 
                         {cookies.get('session') && 
                         <button className='btn alert-primary' onClick={() => this.agregarFavorito()}>🩶</button>
 }
