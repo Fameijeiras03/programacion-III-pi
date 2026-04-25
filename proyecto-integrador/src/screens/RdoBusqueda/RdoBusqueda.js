@@ -54,4 +54,4 @@ class Resultados extends Component {
     }
 }
 
-export default Resultados
+export default Resultados;

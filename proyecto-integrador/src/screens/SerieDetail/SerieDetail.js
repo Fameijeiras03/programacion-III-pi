@@ -24,8 +24,8 @@ class SerieDetail extends Component {
                 let storage = localStorage.getItem("favoritesSeries");
                 if (storage !== null) {
                     let storageParseado = JSON.parse(storage);
-                    let esta = storageParseado.filter(fav => fav.id === data.id);
-                    if (esta.length > 0) {
+                    let esta = storageParseado.includes(data.id);
+                    if (esta) {
                         this.setState({ esFavorito: true });
                     }
                 }
@@ -36,10 +36,13 @@ class SerieDetail extends Component {
     agregarFav() {
         let storage = localStorage.getItem("favoritesSeries");
         let favs = [];
+        
         if (storage !== null) {
             favs = JSON.parse(storage);
         }
-        favs.push(this.state.serie);
+
+        favs.push(this.state.serie.id);
+        
         localStorage.setItem("favoritesSeries", JSON.stringify(favs));
         this.setState({ esFavorito: true });
     }
@@ -48,7 +51,8 @@ class SerieDetail extends Component {
         let storage = localStorage.getItem("favoritesSeries");
         if (storage !== null) {
             let storageParseado = JSON.parse(storage);
-            let storageFiltrado = storageParseado.filter(fav => fav.id !== this.state.serie.id);
+            let storageFiltrado = storageParseado.filter(id => id !== this.state.serie.id);
+            
             localStorage.setItem("favoritesSeries", JSON.stringify(storageFiltrado));
         }
         this.setState({ esFavorito: false });
@@ -56,7 +60,7 @@ class SerieDetail extends Component {
 
     render() {
         if (this.state.serie === null) {
-            return <p>Cargando serie...</p>;
+            return <p>Cargando...</p>;
         }
 
         const s = this.state.serie;
@@ -69,10 +73,16 @@ class SerieDetail extends Component {
                 <div className="info-detalle">
                     <h1>{s.name}</h1>
                     <p>Rating: {s.vote_average}</p>
-                    <p>Estreno: {s.first_air_date}</p>
-                    <p>Episodios: {s.number_of_episodes}</p>
+                    <p>Primera emisión: {s.first_air_date}</p>
                     <p>Sinopsis: {s.overview}</p>
-                    <p>Géneros: {s.genres.map(g => g.name + ",  ")}</p>
+                    
+                    <p>Géneros: {s.genres.map((g, index) => {
+                        if (index === s.genres.length - 1) {
+                            return g.name;
+                        } else {
+                            return g.name + ", ";
+                        }
+                    })}</p>
 
                     {userLogged !== undefined ? (
                         this.state.esFavorito === false ? (

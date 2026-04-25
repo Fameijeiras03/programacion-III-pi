@@ -52,4 +52,4 @@ class SectionAllSeries extends Component {
     }
 }
 
-export default SectionAllSeries
+export default SectionAllSeries;

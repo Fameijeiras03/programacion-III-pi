@@ -52,4 +52,4 @@ class SectionAllMovies extends Component {
     }
 }
 
-export default SectionAllMovies
+export default SectionAllMovies;

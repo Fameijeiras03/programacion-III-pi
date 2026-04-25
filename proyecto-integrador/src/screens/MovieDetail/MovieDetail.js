@@ -24,8 +24,9 @@ class MovieDetail extends Component {
                 let storage = localStorage.getItem("favoritesMovies");
                 if (storage !== null) {
                     let storageParseado = JSON.parse(storage);
-                    let esta = storageParseado.filter(fav => fav.id === data.id);
-                    if (esta.length > 0) {
+                    // Ahora comparamos IDs directamente en el array de números
+                    let esta = storageParseado.includes(data.id);
+                    if (esta) {
                         this.setState({ esFavorito: true });
                     }
                 }
@@ -36,10 +37,14 @@ class MovieDetail extends Component {
     agregarFav() {
         let storage = localStorage.getItem("favoritesMovies");
         let favs = [];
+        
         if (storage !== null) {
             favs = JSON.parse(storage);
         }
-        favs.push(this.state.movie);
+
+        // GUARDAMOS SOLO EL ID (Como en Rick y Morty)
+        favs.push(this.state.movie.id);
+        
         localStorage.setItem("favoritesMovies", JSON.stringify(favs));
         this.setState({ esFavorito: true });
     }
@@ -48,7 +53,9 @@ class MovieDetail extends Component {
         let storage = localStorage.getItem("favoritesMovies");
         if (storage !== null) {
             let storageParseado = JSON.parse(storage);
-            let storageFiltrado = storageParseado.filter(fav => fav.id !== this.state.movie.id);
+            // Filtramos por ID
+            let storageFiltrado = storageParseado.filter(id => id !== this.state.movie.id);
+            
             localStorage.setItem("favoritesMovies", JSON.stringify(storageFiltrado));
         }
         this.setState({ esFavorito: false });
@@ -72,7 +79,12 @@ class MovieDetail extends Component {
                     <p>Estreno: {m.release_date}</p>
                     <p>Duración: {m.runtime} minutos</p>
                     <p>Sinopsis: {m.overview}</p>
-                    <p>Géneros: {m.genres.map(g => g.name + ",  ")}</p>
+                    <p>Géneros: {m.genres.map((g, index) => {
+                        if (index === m.genres.length - 1) {
+                            return g.name;
+                        } else {
+                            return g.name + ", ";
+                        }})}</p>
 
                     {userLogged !== undefined ? (
                         this.state.esFavorito === false ? (
