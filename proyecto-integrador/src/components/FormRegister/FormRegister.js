@@ -1,46 +1,41 @@
-import React, { Component } from "react";
+import { useState } from "react";
 import { withRouter } from 'react-router-dom';
-import Cookies from "universal-cookie"
+import Cookies from "universal-cookie";
 import "./FormRegister.css";
 
-const cookies = new Cookies ()
+const cookies = new Cookies();
 
-class FormRegister extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: "",
-            email: "",
-            password: "",
-            mensajeError: ""
-        };
-    }
+function FormRegister (props) {
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [mensajeError, setMensajeError] = useState('');
 
-    controlarCambios(event, campo) {
-        this.setState({ [campo]: event.target.value });
-    }
+    const controlarUsername = (event) => setUsername(event.target.value);
+    const controlarEmail = (event) => setEmail(event.target.value);
+    const controlarPassword = (event) => setPassword(event.target.value);
 
-    Submit(event) {
+    const Submit = (event) => {
         event.preventDefault();
         const usuarioACrear = {
-            username: this.state.username,
-            email: this.state.email,
-            password: this.state.password,
+            username: username,
+            email: email,
+            password: password,
             createdAt: Date.now() 
         };
 
-        if (this.state.username.length < 3) {
-            this.setState({ mensajeError: "La extensión del username debe ser minimo de 3" })
+        if (username.length < 3) {
+            setMensajeError("La extensión del username debe ser minimo de 3");
             return
         }
 
-        if (!this.state.email.includes("@")) {
-            this.setState({ mensajeError: "email mal formateado" })
+        if (!email.includes("@")) {
+            setMensajeError("email mal formateado")
             return
         }
 
-        if (this.state.password.length < 6) {
-            this.setState({ mensajeError: "La extensión del password debe ser de mas de 6 caracteres" })
+        if (password.length < 6) {
+            setMensajeError("La extensión del password debe ser de mas de 6 caracteres" )
             return
         }
 
@@ -48,10 +43,10 @@ class FormRegister extends Component {
 
         if (usersStorage !== null) {
             let usersParseado = JSON.parse(usersStorage);
-            let usersFiltrados = usersParseado.filter(user => user.email === this.state.email);
+            let usersFiltrados = usersParseado.filter(user => user.email === email);
             
             if (usersFiltrados.length > 0) {
-                this.setState({ mensajeError: "Ya existe un usuario con el email ingresado" })
+                setMensajeError("Ya existe un usuario con el email ingresado" )
                 return
             } else {
                 usersParseado.push(usuarioACrear)
@@ -67,34 +62,32 @@ class FormRegister extends Component {
         if (usuarioACrear) {
             cookies.set('user-auth-cookie', usuarioACrear.email);
         } else {
-            this.setState({ mensajeError: "Ya existe un usuario asociado a ese email, pruebe otro" })
+            setMensajeError("Ya existe un usuario asociado a ese email, pruebe otro")
         }
 
-        this.props.history.push("/Login");
+        props.history.push("/Login");
     }
 
-    render() {
         return (
             <section className="register-container">
-                <form className="register-form" onSubmit={(event) => this.Submit(event)}>
+                <form className="register-form" onSubmit={(event) => Submit(event)}>
                     <h2>Registro de Usuario</h2>
 
                     <input type="text" name="username" placeholder="Nombre de usuario"
-                        onChange={(event) => this.controlarCambios(event, 'username')} value={this.state.username} />
+                        onChange={(event) => controlarUsername(event)} value={username} />
 
                     <input type="email" name="email" placeholder="Email"
-                        onChange={(event) => this.controlarCambios(event, "email")} value={this.state.email} />
+                        onChange={(event) => controlarEmail(event)} value={email} />
 
                     <input type="password" name="password" placeholder="Password"
-                        onChange={(event) => this.controlarCambios(event, "password")} value={this.state.password} />
+                        onChange={(event) => controlarPassword(event)} value={password} />
 
-                    <label className="error-msg" onChange={(event) => this.controlarCambios(event , "mensajeError")}>{this.state.mensajeError}</label>
+                    <label className="error-msg">{mensajeError}</label>
 
                     <button type="submit">Registrarme</button>
                 </form>
             </section>
         );
     }
-}
 
 export default withRouter(FormRegister);
