@@ -1,30 +1,25 @@
-import React, { Component } from "react";
+import {useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
 
-class Series extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            verMas: false,
-            esFavorito: false
-        };
-    }
+function Series({ results }) {
+    const [verMas, setVerMas] = useState(false);
+    const [esFavorito, setEsFavorito] = useState(false);
 
-    componentDidMount() {
+    useEffect(() => {
         let storage = localStorage.getItem("favoritesSeries");
         if (storage !== null) {
             let storageParseado = JSON.parse(storage);
-            let esta = storageParseado.includes(this.props.results.id);
+            let esta = storageParseado.includes(results.id);
             if (esta) {
-                this.setState({ esFavorito: true });
+                setEsFavorito(true);
             }
         }
-    }
+    }, []);
 
-    agregarFavorito() {
+    function agregarFavorito() {
         let storage = localStorage.getItem("favoritesSeries");
         let favoritesSeries = [];
 
@@ -32,31 +27,30 @@ class Series extends Component {
             favoritesSeries = JSON.parse(storage);
         }
 
-        favoritesSeries.push(this.props.results.id);
+        favoritesSeries.push(results.id);
         localStorage.setItem("favoritesSeries", JSON.stringify(favoritesSeries));
-        this.setState({ esFavorito: true });
+        setEsFavorito(true);
     }
 
-    sacarFavorito() {
+    function sacarFavorito() {
         let storage = localStorage.getItem("favoritesSeries");
         if (storage !== null) {
             let storageParseado = JSON.parse(storage);
-            let storageFiltrado = storageParseado.filter(id => id !== this.props.results.id);
+            let storageFiltrado = storageParseado.filter(id => id !== results.id);
             localStorage.setItem("favoritesSeries", JSON.stringify(storageFiltrado));
         }
-        this.setState({ esFavorito: false });
+        setEsFavorito(false);
+    }
+    
+    function btnVerMas() {
+        setVerMas(!verMas);
     }
 
-    btnVerMas() {
-        this.setState({ verMas: !this.state.verMas });
-    }
-
-    render() {
         let btn = 'Ver Mas';
         let detalleSeries = null;
-        let series = this.props.results;
+        let series = results;
 
-        if (this.state.verMas === true) {
+        if (verMas === true) {
             btn = 'Ver Menos';
             detalleSeries = <p>{series.overview}</p>;
         }
@@ -71,7 +65,7 @@ class Series extends Component {
                     
                     {detalleSeries}
                     
-                    <button className='btn btn-primary' onClick={() => this.btnVerMas()}>
+                    <button className='btn btn-primary' onClick={() => btnVerMas()}>
                         {btn}
                     </button> 
                     
@@ -80,12 +74,12 @@ class Series extends Component {
                     </Link> 
 
                     {userLogged !== undefined ? (
-                        this.state.esFavorito === false ? (
-                            <button className='btn alert-primary' onClick={() => this.agregarFavorito()}>
+                        esFavorito === false ? (
+                            <button className='btn alert-primary' onClick={() => agregarFavorito()}>
                                 Agregar a favoritos
                             </button>
                         ) : (
-                            <button className='btn alert-danger' onClick={() => this.sacarFavorito()}>
+                            <button className='btn alert-danger' onClick={() => sacarFavorito()}>
                                 Sacar de favoritos
                             </button>
                         )
@@ -94,6 +88,5 @@ class Series extends Component {
             </article>
         );
     }
-}
 
 export default Series;

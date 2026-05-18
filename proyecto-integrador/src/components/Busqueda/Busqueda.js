@@ -1,46 +1,42 @@
-import React, { Component } from 'react';
+import {useState,useEffect} from "react";
 import { withRouter } from 'react-router-dom';
 
-class Buscador extends Component {
-    constructor(props) {
-    super(props)
-    this.state = {
-    busqueda: '',
-    tipo: ""
+function Buscador() {
+    const [busqueda, setBusqueda] = useState('');
+    const [tipo, setTipo] = useState('');
+
+    const controlarForm = (evento) => {
+        evento.preventDefault();
+        const path = tipo ? `/resultados/${busqueda}/${tipo}` : `/resultados/${busqueda}`;
+        this.props.history.push(path);
     };
-}
 
-controlarForm(evento) {
-    evento.preventDefault();
-    const texto = this.state.busqueda;
-    const tipo = this.state.tipo;
-    const path = tipo ? `/resultados/${texto}/${tipo}` : `/resultados/${texto}`;
-    this.props.history.push(path);
-};
-controlarInput(evento) {
-    this.setState({ busqueda: evento.target.value })
-};
+    const controlarInput = (evento) => {
+        setBusqueda(evento.target.value);
+    };
 
-controlarRadio(evento)  {
-    this.setState({ tipo: evento.target.value });
+    const controlarRadio = (evento) => {
+        setTipo(evento.target.value);
+    };
 
-};
-
-render() {
     return (
-    <form className="search-form" onSubmit={(evento) => this.controlarForm(evento)} method="get">
-        <input
-        type="text"
-        name="searchData"
-        placeholder="Buscar..."
-        value={this.state.busqueda}
-        onChange={(evento) => this.controlarInput(evento)} required />
-        <label><input type="radio" name="tipo" value="movie" onChange={(evento) => this.controlarRadio(evento)} required /> Películas</label>
-        <label><input type="radio" name="tipo" value="tv" onChange={(evento) => this.controlarRadio(evento)} required /> Series</label>
-        <button type="submit" className="botonBuscar">Buscar</button>
-    </form>
+        <form className="search-form" onSubmit={controlarForm} method="get">
+            <input
+                type="text"
+                name="searchData"
+                placeholder="Buscar..."
+                value={busqueda}
+                onChange={controlarInput}
+                required />
+            <label>
+                <input type="radio" name="tipo" value="movie" onChange={controlarRadio} required /> Películas
+            </label>
+            <label>
+                <input type="radio" name="tipo" value="tv" onChange={controlarRadio} required /> Series
+            </label>
+            <button type="submit" className="botonBuscar">Buscar</button>
+        </form>
     );
-}
 }
 
 export default withRouter(Buscador);

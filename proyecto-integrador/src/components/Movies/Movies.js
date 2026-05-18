@@ -1,31 +1,24 @@
-import React, { Component } from "react";
+import {useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import './Movies.css';
 
 const cookies = new Cookies();
 
-class Movies extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            verMas: false,
-            esFavorito: false
-        };
-    }
-
-    componentDidMount() {
+function Movies({ results }){
+    const [verMas, setVerMas] = useState(false);
+    const [esFavorito, setEsFavorito] = useState(false);
+    useEffect(() => {
         let storage = localStorage.getItem("favoritesMovies");
         if (storage !== null) {
             let storageParseado = JSON.parse(storage);
-            let esta = storageParseado.includes(this.props.results.id);
+            let esta = storageParseado.includes(results.id);
             if (esta) {
-                this.setState({ esFavorito: true });
+                setEsFavorito(true);
             }
         }
-    }
-
-    agregarFavorito() {
+    }, []);
+    function agregarFavorito() {
         let storage = localStorage.getItem("favoritesMovies");
         let favoritesMovies = [];
 
@@ -33,34 +26,31 @@ class Movies extends Component {
             favoritesMovies = JSON.parse(storage);
         }
 
-        favoritesMovies.push(this.props.results.id);
+        favoritesMovies.push(results.id);
         localStorage.setItem("favoritesMovies", JSON.stringify(favoritesMovies));
         
-        this.setState({ esFavorito: true });
+        setEsFavorito(true);
+        
     }
-
-    sacarFavorito() {
+    function sacarFavorito() {
         let storage = localStorage.getItem("favoritesMovies");
         if (storage !== null) {
             let storageParseado = JSON.parse(storage);
-            let storageFiltrado = storageParseado.filter(id => id !== this.props.results.id);
+            let storageFiltrado = storageParseado.filter(id => id !== results.id);
             
             localStorage.setItem("favoritesMovies", JSON.stringify(storageFiltrado));
         }
         
-        this.setState({ esFavorito: false });
+        setEsFavorito(false)
     }
-
-    btnVerMas() {
-        this.setState({ verMas: !this.state.verMas });
+    function btnVerMas() {
+        setVerMas(!verMas);
     }
-
-    render() {
         let btn = 'Ver Mas';
         let detalleMovie = null;
-        let movie = this.props.results;
+        let movie = results;
 
-        if (this.state.verMas === true) {
+        if (verMas === true) {
             btn = 'Ver Menos';
             detalleMovie = <p>{movie.overview}</p>;
         }
@@ -75,7 +65,7 @@ class Movies extends Component {
                     
                     {detalleMovie}
                     
-                    <button className='btn btn-primary' onClick={() => this.btnVerMas()}>
+                    <button className='btn btn-primary' onClick={() => btnVerMas()}>
                         {btn}
                     </button> 
                     
@@ -84,12 +74,12 @@ class Movies extends Component {
                     </Link> 
 
                     {userLogged !== undefined ? (
-                        this.state.esFavorito === false ? (
-                            <button className='btn alert-primary' onClick={() => this.agregarFavorito()}>
+                        esFavorito === false ? (
+                            <button className='btn alert-primary' onClick={() => agregarFavorito()}>
                                 Agregar a favoritos
                             </button>
                         ) : (
-                            <button className='btn alert-danger' onClick={() => this.sacarFavorito()}>
+                            <button className='btn alert-danger' onClick={() => sacarFavorito()}>
                                 Sacar de favoritos
                             </button>
                         )
@@ -97,7 +87,12 @@ class Movies extends Component {
                 </div>
             </article>
         );
-    }
-}
+
+
+
+
+
+
+        };
 
 export default Movies;
